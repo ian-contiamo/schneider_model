@@ -15,7 +15,7 @@ Put raw data files in `data/raw`:
 * `recipe_metadata.csv`
 * `submission_format.csv`
 * `test_values.zip`
-* `train_labels.csv`  
+* `train_labels.csv`
 * `train_values.zip`
 
 ### Pull the Docker image
@@ -25,13 +25,14 @@ Install [Docker](https://www.docker.com/), then pull our Docker image: `docker p
 ### Execute the three notebooks one after the other:
 1. `data_processing.ipynb` (train/test split and truncation of phases)
 1. `feature_engineering.ipynb` (calculation of timeseries features)
-1. `best_model.ipynb` (training the model)
+1. `catboost/best_model.ipynb` (training the model)
 
 Specifically:
+
 ```bash
-docker run --rm -v $(pwd):/labs/bundle -e LABS_BUNDLE_ROOT=/labs/bundle contiamo/schneider papermill /labs/bundle/notebooks/data_processing.ipynb /labs/bundle/notebooks/data_processing.output.ipynb
-docker run --rm -v $(pwd):/labs/bundle -e LABS_BUNDLE_ROOT=/labs/bundle contiamo/schneider papermill /labs/bundle/notebooks/feature_engineering.ipynb /labs/bundle/notebooks/feature_engineering.output.ipynb
-docker run --rm -v $(pwd):/labs/bundle -e LABS_BUNDLE_ROOT=/labs/bundle contiamo/schneider papermill /labs/bundle/notebooks/catboost/best_model.ipynb /labs/bundle/notebooks/catboost/best_model.output.ipynb
+docker run --rm -e CHOWN_HOME=yes -v "$PWD":/home/jovyan/work contiamo/schneider papermill /home/jovyan/work/notebooks/data_processing.ipynb /home/jovyan/work/notebooks/data_processing.output.ipynb
+docker run --rm -e CHOWN_HOME=yes -v "$PWD":/home/jovyan/work contiamo/schneider papermill /home/jovyan/work/notebooks/feature_engineering.ipynb /home/jovyan/work/notebooks/feature_engineering.output.ipynb
+docker run --rm -e CHOWN_HOME=yes -v "$PWD":/home/jovyan/work contiamo/schneider papermill /home/jovyan/work/notebooks/catboost/best_model.ipynb /home/jovyan/work/notebooks/catboost/best_model.output.ipynb
 ```
 
 The resulting submission will be in `data/`.
@@ -39,8 +40,9 @@ The resulting submission will be in `data/`.
 ## Interactive mode
 
 In order to run the notebooks interactively:
+
 ```bash
-docker run --rm -v $(pwd):/labs/bundle -e LABS_BUNDLE_ROOT=/labs/bundle -p 127.0.0.1:8888:8888 contiamo/schneider jupyter lab --notebook-dir=/labs/bundle --NotebookApp.token=''
+docker run --rm -p 127.0.0.1:8888:8888 -e CHOWN_HOME=yes -v "$PWD":/home/jovyan/work contiamo/schneider jupyter lab --NotebookApp.token=''
 ```
 
 Then open your browser at this address: http://localhost:8888. If the port is already in use, change it in the `-p` flag above.
