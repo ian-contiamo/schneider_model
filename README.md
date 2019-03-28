@@ -15,7 +15,7 @@ Put raw data files in `data/raw`:
 * `recipe_metadata.csv`
 * `submission_format.csv`
 * `test_values.zip`
-* `train_labels.csv`  
+* `train_labels.csv`
 * `train_values.zip`
 
 ### Pull the Docker image
@@ -25,7 +25,7 @@ Install [Docker](https://www.docker.com/), then pull our Docker image: `docker p
 ### Execute the three notebooks one after the other:
 1. `data_processing.ipynb` (train/test split and truncation of phases)
 1. `feature_engineering.ipynb` (calculation of timeseries features)
-1. `best_model.ipynb` (training the model)
+1. `catboost/best_model.ipynb` (training the model)
 
 Specifically:
 ```bash
