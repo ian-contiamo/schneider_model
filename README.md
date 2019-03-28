@@ -30,8 +30,8 @@ Install [Docker](https://www.docker.com/), then pull our Docker image: `docker p
 Specifically:
 ```bash
 docker run --rm -v $(pwd):/labs/bundle -e LABS_BUNDLE_ROOT=/labs/bundle contiamo/schneider papermill /labs/bundle/notebooks/data_processing.ipynb /labs/bundle/notebooks/data_processing.output.ipynb
-docker run --rm -v $(pwd):/labs/bundle -e LABS_BUNDLE_ROOT=/labs/bundle contiamo/schneider papermill /labs/bundle/notebooks/data_processing.ipynb /labs/bundle/notebooks/data_processing.output.ipynb
-docker run --rm -v $(pwd):/labs/bundle -e LABS_BUNDLE_ROOT=/labs/bundle contiamo/schneider papermill /labs/bundle/notebooks/data_processing.ipynb /labs/bundle/notebooks/data_processing.output.ipynb
+docker run --rm -v $(pwd):/labs/bundle -e LABS_BUNDLE_ROOT=/labs/bundle contiamo/schneider papermill /labs/bundle/notebooks/feature_engineering.ipynb /labs/bundle/notebooks/feature_engineering.output.ipynb
+docker run --rm -v $(pwd):/labs/bundle -e LABS_BUNDLE_ROOT=/labs/bundle contiamo/schneider papermill /labs/bundle/notebooks/catboost/best_model.ipynb /labs/bundle/notebooks/catboost/best_model.output.ipynb
 ```
 
 The resulting submission will be in `data/`.
