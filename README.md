@@ -42,7 +42,7 @@ The resulting submission will be in `data/`.
 In order to run the notebooks interactively:
 
 ```bash
-docker run --rm -p 8888:8888 -e CHOWN_HOME=yes -v "$PWD":/home/jovyan/work contiamo/schneider jupyter lab --NotebookApp.token=''
+docker run --rm -p 127.0.0.1:8888:8888 -e CHOWN_HOME=yes -v "$PWD":/home/jovyan/work contiamo/schneider jupyter lab --NotebookApp.token=''
 ```
 
 Then open your browser at this address: http://localhost:8888. If the port is already in use, change it in the `-p` flag above.
