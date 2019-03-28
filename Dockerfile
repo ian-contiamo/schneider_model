@@ -1,4 +1,4 @@
-FROM docker pull jupyter/minimal-notebook:59b402ce701d
+FROM jupyter/minimal-notebook:59b402ce701d
 
 USER root
 
