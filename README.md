@@ -28,10 +28,11 @@ Install [Docker](https://www.docker.com/), then pull our Docker image: `docker p
 1. `catboost/best_model.ipynb` (training the model)
 
 Specifically:
+
 ```bash
-docker run --rm -v $(pwd):/labs/bundle -e LABS_BUNDLE_ROOT=/labs/bundle contiamo/schneider papermill /labs/bundle/notebooks/data_processing.ipynb /labs/bundle/notebooks/data_processing.output.ipynb
-docker run --rm -v $(pwd):/labs/bundle -e LABS_BUNDLE_ROOT=/labs/bundle contiamo/schneider papermill /labs/bundle/notebooks/feature_engineering.ipynb /labs/bundle/notebooks/feature_engineering.output.ipynb
-docker run --rm -v $(pwd):/labs/bundle -e LABS_BUNDLE_ROOT=/labs/bundle contiamo/schneider papermill /labs/bundle/notebooks/catboost/best_model.ipynb /labs/bundle/notebooks/catboost/best_model.output.ipynb
+docker run --rm -e CHOWN_HOME=yes -v "$PWD":/home/jovyan/work contiamo/schneider papermill /home/jovyan/work/notebooks/data_processing.ipynb /home/jovyan/work/notebooks/data_processing.output.ipynb
+docker run --rm -e CHOWN_HOME=yes -v "$PWD":/home/jovyan/work contiamo/schneider papermill /home/jovyan/work/notebooks/feature_engineering.ipynb /home/jovyan/work/notebooks/feature_engineering.output.ipynb
+docker run --rm -e CHOWN_HOME=yes -v "$PWD":/home/jovyan/work contiamo/schneider papermill /home/jovyan/work/notebooks/catboost/best_model.ipynb /home/jovyan/work/notebooks/catboost/best_model.output.ipynb
 ```
 
 The resulting submission will be in `data/`.
@@ -41,7 +42,7 @@ The resulting submission will be in `data/`.
 In order to run the notebooks interactively:
 
 ```bash
-docker run --rm -p 8892:8888 -e CHOWN_HOME=yes -v "$PWD":/home/jovyan/work contiamo/schneider jupyter lab --NotebookApp.token=''
+docker run --rm -p 8888:8888 -e CHOWN_HOME=yes -v "$PWD":/home/jovyan/work contiamo/schneider jupyter lab --NotebookApp.token=''
 ```
 
 Then open your browser at this address: http://localhost:8888. If the port is already in use, change it in the `-p` flag above.
